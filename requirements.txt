@@ -1,0 +1,10 @@
+streamlit
+langchain_openai
+langchain_core
+langchain_groq
+gtts
+SpeechRecognition
+# speech_recognition
+docx
+python-dotenv
+PyAudio
