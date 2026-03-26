@@ -16,12 +16,12 @@ A Streamlit application designed for real-time language translation. The app sup
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
+    git clone https://github.com/Akash9301/Multilanguage-Model-project.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd your-repo-name
+    cd Multilanguage-Model-project
     ```
 
 3. Install the required dependencies:
@@ -45,14 +45,14 @@ A Streamlit application designed for real-time language translation. The app sup
 
 ## Dependencies
 
-- `streamlit`
-- `langchain_openai`
-- `langchain_core`
-- `langchain_groq`
-- `gtts`
-- `speech_recognition`
-- `docx`
-- `python-dotenv`
+- streamlit
+- langchain_openai
+- langchain_core
+- langchain_groq
+- gtts
+- speech_recognition
+- docx
+- python-dotenv
 
 ## Contributing
 
