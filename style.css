@@ -1,12 +1,444 @@
-/* styles.css */
-.main {
+/* ================================================
+   LinguaFlow AI — Dark Terminal Glassmorphism Theme
+   ================================================ */
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+    --bg-void:        #060608;
+    --bg-deep:        #0d0d14;
+    --bg-glass:       rgba(255,255,255,0.04);
+    --bg-glass-hover: rgba(255,255,255,0.07);
+    --bg-glass-active:rgba(99,102,241,0.18);
+    --border-glass:   rgba(255,255,255,0.08);
+    --border-accent:  rgba(99,102,241,0.5);
+
+    --ink-primary:    #f0f0f5;
+    --ink-secondary:  #8888a8;
+    --ink-muted:      #44445a;
+
+    --violet:         #6366f1;
+    --violet-glow:    rgba(99,102,241,0.3);
+    --violet-dim:     rgba(99,102,241,0.12);
+    --emerald:        #10b981;
+    --emerald-glow:   rgba(16,185,129,0.25);
+    --rose:           #f43f5e;
+    --amber:          #f59e0b;
+
+    --radius-sm:      6px;
+    --radius-md:      12px;
+    --radius-lg:      18px;
+    --radius-xl:      26px;
+
+    --font-display:   'Syne', sans-serif;
+    --font-mono:      'JetBrains Mono', monospace;
+
+    --transition:     0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.css-1d391kg {
-    padding: 0;
+/* ─── Reset & Base ─────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, [data-testid="stAppViewContainer"] {
+    background-color: var(--bg-void) !important;
+    color: var(--ink-primary) !important;
+    font-family: var(--font-mono) !important;
+}
+
+[data-testid="stApp"] {
+    background: var(--bg-void) !important;
+}
+
+/* Subtle grid texture */
+[data-testid="stAppViewContainer"]::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--border-glass) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Sidebar ───────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: var(--bg-deep) !important;
+    border-right: 1px solid var(--border-glass) !important;
+}
+
+[data-testid="stSidebar"] > div {
+    padding: 2rem 1.5rem !important;
+}
+
+/* Sidebar title */
+[data-testid="stSidebar"] h1 {
+    font-family: var(--font-display) !important;
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    color: var(--ink-primary) !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* Sidebar subheader */
+[data-testid="stSidebar"] h2 {
+    font-family: var(--font-mono) !important;
+    font-size: 0.72rem !important;
+    font-weight: 400 !important;
+    color: var(--violet) !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+}
+
+/* Info box in sidebar */
+[data-testid="stSidebar"] .stAlert {
+    background: var(--violet-dim) !important;
+    border: 1px solid var(--border-accent) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--ink-secondary) !important;
+    font-size: 0.78rem !important;
+}
+
+/* Radio buttons */
+[data-testid="stSidebar"] .stRadio label {
+    font-family: var(--font-mono) !important;
+    font-size: 0.82rem !important;
+    color: var(--ink-secondary) !important;
+    transition: color var(--transition) !important;
+    cursor: pointer !important;
+}
+[data-testid="stSidebar"] .stRadio label:hover {
+    color: var(--ink-primary) !important;
+}
+
+/* Radio selected accent */
+[data-testid="stSidebar"] .stRadio [data-testid="stMarkdownContainer"] p {
+    font-family: var(--font-mono) !important;
+}
+
+/* ─── Main Page Title ───────────────────────── */
+.main-title {
+    font-family: var(--font-display) !important;
+    font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+    background: linear-gradient(135deg, #f0f0f5 30%, #6366f1 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    line-height: 1.1 !important;
+}
+
+/* Override streamlit h1 */
+[data-testid="stMainBlockContainer"] h1 {
+    font-family: var(--font-display) !important;
+    font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+    background: linear-gradient(135deg, #f0f0f5 30%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-testid="stMainBlockContainer"] p {
+    font-family: var(--font-mono) !important;
+    color: var(--ink-secondary) !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* ─── Section headers (h3) ─────────────────── */
+[data-testid="stMarkdownContainer"] h3 {
+    font-family: var(--font-mono) !important;
+    font-size: 0.72rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--violet) !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* ─── Selectboxes ───────────────────────────── */
+[data-testid="stSelectbox"] > label {
+    font-family: var(--font-mono) !important;
+    font-size: 0.72rem !important;
+    color: var(--ink-secondary) !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+}
+
+[data-testid="stSelectbox"] > div > div {
+    background: var(--bg-glass) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--ink-primary) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.88rem !important;
+    transition: border-color var(--transition) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+[data-testid="stSelectbox"] > div > div:hover {
+    border-color: var(--border-accent) !important;
+    background: var(--bg-glass-hover) !important;
+}
+
+/* Dropdown menu */
+[data-testid="stSelectbox"] ul {
+    background: #12121e !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: var(--radius-md) !important;
+}
+[data-testid="stSelectbox"] li {
+    font-family: var(--font-mono) !important;
+    font-size: 0.85rem !important;
+    color: var(--ink-secondary) !important;
+}
+[data-testid="stSelectbox"] li:hover {
+    background: var(--violet-dim) !important;
+    color: var(--ink-primary) !important;
+}
+
+/* ─── Textarea ──────────────────────────────── */
+textarea {
+    background: var(--bg-glass) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--ink-primary) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.7 !important;
+    transition: border-color var(--transition), background var(--transition) !important;
+    resize: none !important;
+    backdrop-filter: blur(10px) !important;
+}
+textarea:focus {
+    border-color: var(--border-accent) !important;
+    background: var(--bg-glass-hover) !important;
+    box-shadow: 0 0 0 3px var(--violet-glow) !important;
+    outline: none !important;
+}
+textarea::placeholder {
+    color: var(--ink-muted) !important;
+    font-style: italic !important;
+}
+
+[data-testid="stTextArea"] label {
+    font-family: var(--font-mono) !important;
+    font-size: 0.72rem !important;
+    color: var(--ink-secondary) !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+}
+
+/* ─── Buttons ───────────────────────────────── */
+.stButton > button {
+    width: 100% !important;
+    border-radius: var(--radius-md) !important;
+    height: auto !important;
+    padding: 0.7rem 1.5rem !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+
+    background: var(--violet-dim) !important;
+    border: 1px solid var(--border-accent) !important;
+    color: var(--violet) !important;
+    transition: all var(--transition) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.stButton > button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.15), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.stButton > button:hover {
+    background: var(--bg-glass-active) !important;
+    border-color: var(--violet) !important;
+    color: #fff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 20px var(--violet-glow) !important;
+}
+.stButton > button:hover::before { opacity: 1; }
+
+.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* ─── Translation Output Box ────────────────── */
+.translation-box {
+    background: var(--bg-glass) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-left: 3px solid var(--violet) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.5rem 1.75rem !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.8 !important;
+    color: var(--ink-primary) !important;
+    backdrop-filter: blur(16px) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    animation: fadeSlideUp 0.4s ease forwards !important;
+}
+
+.translation-box::before {
+    content: 'OUTPUT';
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--violet);
+    opacity: 0.6;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── File Uploader ─────────────────────────── */
+[data-testid="stFileUploader"] {
+    border: 1px dashed var(--border-glass) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 2rem !important;
+    background: var(--bg-glass) !important;
+    transition: border-color var(--transition) !important;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--border-accent) !important;
+}
+[data-testid="stFileUploader"] label {
+    font-family: var(--font-mono) !important;
+    color: var(--ink-secondary) !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+}
+
+/* ─── Spinner ───────────────────────────────── */
+[data-testid="stSpinner"] {
+    color: var(--violet) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.8rem !important;
+}
+
+/* ─── Alerts / Success / Info ───────────────── */
+.stSuccess {
+    background: rgba(16,185,129,0.1) !important;
+    border: 1px solid rgba(16,185,129,0.3) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--emerald) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.82rem !important;
+}
+.stInfo {
+    background: var(--violet-dim) !important;
+    border: 1px solid var(--border-accent) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--violet) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.82rem !important;
+}
+.stError {
+    background: rgba(244,63,94,0.1) !important;
+    border: 1px solid rgba(244,63,94,0.3) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--rose) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.82rem !important;
+}
+
+/* ─── Audio player ──────────────────────────── */
+audio {
+    width: 100% !important;
+    border-radius: var(--radius-md) !important;
+    filter: invert(1) hue-rotate(180deg) !important;
+    opacity: 0.85 !important;
+}
+
+/* ─── Divider ───────────────────────────────── */
+hr {
+    border: none !important;
+    border-top: 1px solid var(--border-glass) !important;
+    margin: 1.5rem 0 !important;
+}
+
+/* ─── Column gap ────────────────────────────── */
+[data-testid="column"] {
+    padding: 0 0.75rem !important;
+}
+
+/* ─── Mode pill badge ───────────────────────── */
+.mode-badge {
+    display: inline-block;
+    padding: 0.25rem 0.85rem;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--violet-dim);
+    border: 1px solid var(--border-accent);
+    color: var(--violet);
+    margin-bottom: 1.25rem;
+}
+
+/* ─── Language swap arrow ───────────────────── */
+.swap-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 1.8rem;
+    color: var(--ink-muted);
+    font-size: 1.2rem;
+}
+
+/* ─── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: var(--border-glass);
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--violet); }
+
+/* ─── Sub-header text ───────────────────────── */
+[data-testid="stMainBlockContainer"] h2 {
+    font-family: var(--font-display) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: var(--ink-primary) !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* ─── Voice mode special ────────────────────── */
+.voice-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--border-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem auto;
+    position: relative;
+    animation: pulse-ring 2s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+
+@keyframes pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 0 var(--violet-glow); }
+    50%       { box-shadow: 0 0 0 16px transparent; }
 }
